@@ -29,6 +29,11 @@ public class OthersController {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/type/id/{id}")
+    private ResponseEntity<TypeDto> getByTypeName(@PathVariable int id) {
+        return service.findById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @GetMapping("/type/name/{typeName}")
     private ResponseEntity<TypeDto> getByTypeName(@PathVariable String typeName) {
         return service.findByName(typeName).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
