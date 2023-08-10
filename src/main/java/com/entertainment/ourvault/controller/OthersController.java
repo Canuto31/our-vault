@@ -1,5 +1,6 @@
 package com.entertainment.ourvault.controller;
 
+import com.entertainment.ourvault.model.dto.StateDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
 import com.entertainment.ourvault.service.others.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +23,18 @@ public class OthersController {
     }
 
     @GetMapping("/type")
-    private ResponseEntity<List<TypeDto>> getAll() {
+    private ResponseEntity<List<TypeDto>> getAllTypes() {
         return new ResponseEntity<>(service.getAllTypes(), HttpStatus.OK);
     }
 
     @GetMapping("/type/id/{id}")
-    private ResponseEntity<TypeDto> getByTypeName(@PathVariable int id) {
+    private ResponseEntity<TypeDto> getTypeById(@PathVariable int id) {
         return service.findTypeById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/type/name/{typeName}")
-    private ResponseEntity<TypeDto> getByTypeName(@PathVariable String typeName) {
-        return service.findTypeByName(typeName).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/type/name/{name}")
+    private ResponseEntity<TypeDto> getTypeByName(@PathVariable String name) {
+        return service.findTypeByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/type")
@@ -44,5 +45,30 @@ public class OthersController {
     @DeleteMapping("/type/{id}")
     private ResponseEntity<String> deleteType (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteTypeById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/state")
+    private ResponseEntity<List<StateDto>> getAllStates() {
+        return new ResponseEntity<>(service.getAllStates(), HttpStatus.OK);
+    }
+
+    @GetMapping("/state/id/{id}")
+    private ResponseEntity<StateDto> getStateById(@PathVariable int id) {
+        return service.findStateById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/state/name/{name}")
+    private ResponseEntity<StateDto> getStateByName(@PathVariable String name) {
+        return service.findStateByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/state")
+    private ResponseEntity<StateDto> saveState(@RequestBody StateDto stateDto) {
+        return new ResponseEntity<>(service.saveState(stateDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/state/{id}")
+    private ResponseEntity<String> deleteState (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteStateById(id) ? "Deleted successfully" : "Not found", service.deleteStateById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
