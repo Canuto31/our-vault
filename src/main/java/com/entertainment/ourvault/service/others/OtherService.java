@@ -1,6 +1,7 @@
 package com.entertainment.ourvault.service.others;
 
 import com.entertainment.ourvault.model.dto.StateDto;
+import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
 
 import java.util.List;
@@ -30,4 +31,15 @@ public interface OtherService {
     StateDto saveState(StateDto stateDto);
 
     boolean deleteStateById(int idState);
+
+    //    CATEGORY
+    List<CategoryDto> getAllCategories();
+
+    Optional<CategoryDto> findCategoryById(int idCategory);
+
+    Optional<CategoryDto> findCategoryByName(String name);
+
+    CategoryDto saveCategory(CategoryDto categoryDto);
+
+    boolean deleteCategoryById(int idCategory);
 }

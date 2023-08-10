@@ -1,8 +1,10 @@
 package com.entertainment.ourvault.service.others;
 
 import com.entertainment.ourvault.model.dto.StateDto;
+import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
 import com.entertainment.ourvault.repository.others.state.StateRepository;
+import com.entertainment.ourvault.repository.others.category.CategoryRepository;
 import com.entertainment.ourvault.repository.others.type.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class OtherServiceImpl implements OtherService{
     private TypeRepository typeRepository;
     @Autowired
     private StateRepository stateRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public List<TypeDto> getAllTypes() {
@@ -70,6 +74,34 @@ public class OtherServiceImpl implements OtherService{
     public boolean deleteStateById(int idState) {
         return this.findStateById(idState).map(type -> {
             stateRepository.delete(idState);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
+        return categoryRepository.getAllCategories();
+    }
+
+    @Override
+    public Optional<CategoryDto> findCategoryById(int idCategory) {
+        return categoryRepository.GetCategoryById(idCategory);
+    }
+
+    @Override
+    public Optional<CategoryDto> findCategoryByName(String name) {
+        return categoryRepository.getCategoryByName(name);
+    }
+
+    @Override
+    public CategoryDto saveCategory(CategoryDto categoryDto) {
+        return categoryRepository.saveCategory(categoryDto);
+    }
+
+    @Override
+    public boolean deleteCategoryById(int idCategory) {
+        return findCategoryById(idCategory).map(type -> {
+            categoryRepository.deleteCategory(idCategory);
             return true;
         }).orElse(false);
     }

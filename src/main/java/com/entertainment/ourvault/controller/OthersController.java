@@ -1,6 +1,7 @@
 package com.entertainment.ourvault.controller;
 
 import com.entertainment.ourvault.model.dto.StateDto;
+import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
 import com.entertainment.ourvault.service.others.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,30 @@ public class OthersController {
     @DeleteMapping("/state/{id}")
     private ResponseEntity<String> deleteState (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteStateById(id) ? "Deleted successfully" : "Not found", service.deleteStateById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/category")
+    private ResponseEntity<List<CategoryDto>> getAllCategories() {
+        return new ResponseEntity<>(service.getAllCategories(), HttpStatus.OK);
+    }
+
+    @GetMapping("/category/id/{id}")
+    private ResponseEntity<CategoryDto> getCategoryByid(@PathVariable int id) {
+        return service.findCategoryById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/category/name/{name}")
+    private ResponseEntity<CategoryDto> getCategoryByName(@PathVariable String name) {
+        return service.findCategoryByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/category")
+    private ResponseEntity<CategoryDto> saveCategory(@RequestBody CategoryDto categoryDto) {
+        return new ResponseEntity<>(service.saveCategory(categoryDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/category/{id}")
+    private ResponseEntity<String> deleteCategory (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteCategoryById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
