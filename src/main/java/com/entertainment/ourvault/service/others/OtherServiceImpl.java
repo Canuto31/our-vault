@@ -15,17 +15,17 @@ public class OtherServiceImpl implements OtherService{
     private TypeRepository typeRepository;
 
     @Override
-    public List<TypeDto> getAll() {
+    public List<TypeDto> getAllTypes() {
         return typeRepository.getAll();
     }
 
     @Override
-    public Optional<TypeDto> findById(int idType) {
+    public Optional<TypeDto> findTypeById(int idType) {
         return typeRepository.GetTypeById(idType);
     }
 
     @Override
-    public Optional<TypeDto> findByName(String typename) {
+    public Optional<TypeDto> findTypeByName(String typename) {
         return typeRepository.getTypeByName(typename);
     }
 
@@ -36,7 +36,7 @@ public class OtherServiceImpl implements OtherService{
 
     @Override
     public boolean deleteTypeById(int idType) {
-        return findById(idType).map(type -> {
+        return this.findTypeById(idType).map(type -> {
             typeRepository.delete(idType);
             return true;
         }).orElse(false);

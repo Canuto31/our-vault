@@ -23,17 +23,17 @@ public class OthersController {
 
     @GetMapping("/type")
     private ResponseEntity<List<TypeDto>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllTypes(), HttpStatus.OK);
     }
 
     @GetMapping("/type/id/{id}")
     private ResponseEntity<TypeDto> getByTypeName(@PathVariable int id) {
-        return service.findById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return service.findTypeById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/type/name/{typeName}")
     private ResponseEntity<TypeDto> getByTypeName(@PathVariable String typeName) {
-        return service.findByName(typeName).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return service.findTypeByName(typeName).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/type")
