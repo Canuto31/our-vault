@@ -16,26 +16,29 @@ public class OtherServiceImpl implements OtherService{
 
     @Override
     public List<TypeDto> getAll() {
-        return null;
+        return typeRepository.getAll();
     }
 
     @Override
     public Optional<TypeDto> findById(int idType) {
-        return Optional.empty();
+        return typeRepository.GetTypeById(idType);
     }
 
     @Override
     public Optional<TypeDto> findByName(String typename) {
-        return Optional.empty();
+        return typeRepository.getTypeByName(typename);
     }
 
     @Override
     public TypeDto saveType(TypeDto typeDto) {
-        return null;
+        return typeRepository.saveType(typeDto);
     }
 
     @Override
     public boolean deleteTypeById(int idType) {
-        return false;
+        return findById(idType).map(type -> {
+            typeRepository.delete(idType);
+            return true;
+        }).orElse(false);
     }
 }
