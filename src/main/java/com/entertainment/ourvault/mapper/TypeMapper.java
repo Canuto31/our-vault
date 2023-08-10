@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//import com.entertainment.ourvault.model.dto.TypeDto;
-//import com.entertainment.ourvault.model.entity.Type;
+import com.entertainment.ourvault.model.dto.TypeDto;
+import com.entertainment.ourvault.model.entity.Type;
 
 @Component
 public class TypeMapper implements BaseMapper<TypeDto, Type>{
