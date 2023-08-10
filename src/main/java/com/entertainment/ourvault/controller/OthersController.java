@@ -40,4 +40,9 @@ public class OthersController {
     private ResponseEntity<TypeDto> saveType(@RequestBody TypeDto typeDto) {
         return new ResponseEntity<>(service.saveType(typeDto), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/type/{id}")
+    private ResponseEntity<String> deleteType (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteTypeById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
 }
