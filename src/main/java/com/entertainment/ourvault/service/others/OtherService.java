@@ -21,7 +21,7 @@ public interface OtherService {
     boolean deleteTypeById(int idType);
 
     //    STATE
-    List<TypeDto> getAllStates();
+    List<StateDto> getAllStates();
 
     Optional<StateDto> findStateById(int idState);
 
