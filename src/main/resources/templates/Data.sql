@@ -5,6 +5,7 @@ INSERT INTO "type" VALUES (1, 'Movie');
 INSERT INTO "type" VALUES (2, 'Serie');
 INSERT INTO "type" VALUES (3, 'Videogame');
 INSERT INTO "type" VALUES (4, 'Book');
+SELECT setval('type_id_seq', (SELECT MAX(id) FROM type));
 
 -- -----------------------------------------------------
 -- Table "category"
@@ -29,6 +30,7 @@ INSERT INTO "category" VALUES (17, 'Battle Royale');
 INSERT INTO "category" VALUES (18, 'Survival');
 INSERT INTO "category" VALUES (19, 'Fighting');
 INSERT INTO "category" VALUES (20, 'Simulation');
+SELECT setval('category_id_seq', (SELECT MAX(id) FROM category));
 
 -- -----------------------------------------------------
 -- Table "STREAM PAGE"
@@ -40,6 +42,7 @@ INSERT INTO "stream_page" VALUES (4, 'Disney+');
 INSERT INTO "stream_page" VALUES (5, 'AppleTV');
 INSERT INTO "stream_page" VALUES (6, 'Star+');
 INSERT INTO "stream_page" VALUES (7, 'Others');
+SELECT setval('stream_page_id_seq', (SELECT MAX(id) FROM stream_page));
 
 -- -----------------------------------------------------
 -- Table "state"
@@ -51,12 +54,14 @@ INSERT INTO "state" VALUES (4, 'Watching');
 INSERT INTO "state" VALUES (5, 'Watched');
 INSERT INTO "state" VALUES (6, 'Playing');
 INSERT INTO "state" VALUES (7, 'Played');
+SELECT setval('state_id_seq', (SELECT MAX(id) FROM state));
 
 -- -----------------------------------------------------
 -- Table "GAME STORE"
 -- -----------------------------------------------------
 INSERT INTO "game_store" VALUES (1, 'Epic Games');
 INSERT INTO "game_store" VALUES (2, 'Steam');
+SELECT setval('game_store_id_seq', (SELECT MAX(id) FROM game_store));
 
 -- -----------------------------------------------------
 -- Table "author"
@@ -66,23 +71,27 @@ INSERT INTO "author" VALUES (2, 'James Dashner');
 INSERT INTO "author" VALUES (3, 'Ernest Cline');
 INSERT INTO "author" VALUES (4, 'Brandon Sanderson');
 INSERT INTO "author" VALUES (5, 'Stephen King');
+SELECT setval('author_id_seq', (SELECT MAX(id) FROM author));
 
 -- -----------------------------------------------------
 -- Table "movie"
 -- -----------------------------------------------------
 INSERT INTO "movie" VALUES (1, 'Resident Evil: Death Island', 91, 7, 7, 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Resident_Evil_-_Death_Island.png/220px-Resident_Evil_-_Death_Island.png', 'https://youtu.be/L-vkuA8oqMY', 1);
 INSERT INTO "movie" VALUES (2, 'No Hard Feelings', 103, 2, 7, 'https://www.huelvainformacion.es/2023/06/16/destino-huelva/Preestreno-Malos-Rollos_1802830226_186979653_1200x675.jpg', 'https://youtu.be/P15S6ND8kbQ', 1);
+SELECT setval('movie_id_seq', (SELECT MAX(id) FROM movie));
 
 -- -----------------------------------------------------
 -- Table "serie"
 -- -----------------------------------------------------
 INSERT INTO "serie" VALUES (1, 'Chucky', 2, 16, 47, 8, 6, 'https://es.web.img3.acsta.net/pictures/21/09/06/17/25/5742155.jpg', 'https://youtu.be/Za3L68Y6ZFY', 0, 0, 1);
+SELECT setval('serie_id_seq', (SELECT MAX(id) FROM serie));
 
 -- -----------------------------------------------------
 -- Table "videogame"
 -- -----------------------------------------------------
 INSERT INTO "videogame" VALUES (1, 'Resident Evil IV Remake', 8, 2, 267900, 'https://cdn.akamai.steamstatic.com/steam/apps/2050650/header.jpg?t=1688636510', 'https://youtu.be/EyvrjE9jaKw', 1);
 INSERT INTO "videogame" VALUES (2, 'Hogwarts Legacy', 5, 1, 229999, 'https://www.semana.com/resizer/WM6jfKmRlrYJAsVPca3PENPcf5s=/1280x720/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/7DO7DYGD4FDKFKTJWUYOG3SNI4.jpg', 'https://youtu.be/S6GTl_vPRvU', 1);
+SELECT setval('videogame_id_seq', (SELECT MAX(id) FROM videogame));
 
 -- -----------------------------------------------------
 -- Table "book"
@@ -92,6 +101,7 @@ INSERT INTO "book" VALUES (2, 'Harry Potter and the Goblet of Fire', 5, 62000, '
 INSERT INTO "book" VALUES (3, 'Harry Potter and the Order of the Phoenix', 5, 62000, 'https://panamericana.vtexassets.com/arquivos/ids/293484-1200-auto?v=636628506433670000&width=1200&height=auto&aspect=true', 870, 1, 1);
 INSERT INTO "book" VALUES (4, 'Harry Potter and the Half-Blood Prince', 5, 62000, 'https://panamericana.vtexassets.com/arquivos/ids/293488-1200-auto?v=636628506607230000&width=1200&height=auto&aspect=true', 652, 1, 1);
 INSERT INTO "book" VALUES (5, 'Harry Potter and the Deathly Hallows', 5, 62000, 'https://panamericana.vtexassets.com/arquivos/ids/293489-1200-auto?v=636628506647700000&width=1200&height=auto&aspect=true', 759, 1, 1);
+SELECT setval('book_id_seq', (SELECT MAX(id) FROM book));
 
 -- -----------------------------------------------------
 -- Table "type_state"
