@@ -3,6 +3,8 @@ package com.entertainment.ourvault.model.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "type")
 @Data
@@ -13,4 +15,7 @@ public class Type {
     private Integer id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "types")
+    private Set<State> states;
 }
