@@ -75,6 +75,7 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
         return mapperUtils.dtosToEntities(dtos, this::dtoToEntity);
     }
 
+    @Override
     public BookDto entityToDtoBasic(Book entity) {
         BookDto dto = new BookDto();
 
@@ -88,6 +89,7 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
         return dto;
     }
 
+    @Override
     public Book dtoToEntityBasic(BookDto dto) {
         Book entity = new Book();
 
@@ -101,10 +103,12 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
         return entity;
     }
 
+    @Override
     public List<BookDto> entitiesToDtosBasic(List<Book> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
+    @Override
     public List<Book> DtosToEntitiesBasic(List<BookDto> dtos) {
         return mapperUtils.dtosToEntities(dtos, this::dtoToEntityBasic);
     }

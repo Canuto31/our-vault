@@ -64,6 +64,7 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
+    @Override
     public CategoryDto entityToDtoBasic(Category entity) {
         CategoryDto dto = new CategoryDto();
 
@@ -73,6 +74,7 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
         return dto;
     }
 
+    @Override
     public Category dtoToEntityBasic(CategoryDto dto) {
         Category entity = new Category();
 
@@ -82,10 +84,12 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
         return entity;
     }
 
+    @Override
     public List<CategoryDto> entitiesToDtosBasic(List<Category> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
+    @Override
     public List<Category> DtosToEntitiesBasic(List<CategoryDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }

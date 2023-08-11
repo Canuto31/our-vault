@@ -55,6 +55,7 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
+    @Override
     public AuthorDto entityToDtoBasic(Author entity) {
         AuthorDto dto = new AuthorDto();
 
@@ -64,6 +65,7 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
         return dto;
     }
 
+    @Override
     public Author dtoToEntityBasic(AuthorDto dto) {
         Author entity = new Author();
 
@@ -73,10 +75,12 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
         return entity;
     }
 
+    @Override
     public List<AuthorDto> entitiesToDtosBasic(List<Author> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
+    @Override
     public List<Author> DtosToEntitiesBasic(List<AuthorDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }

@@ -62,6 +62,7 @@ public class StateMapper implements BaseMapper<StateDto, State> {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
+    @Override
     public StateDto entityToDtoBasic(State entity) {
         StateDto dto = new StateDto();
 
@@ -71,6 +72,7 @@ public class StateMapper implements BaseMapper<StateDto, State> {
         return dto;
     }
 
+    @Override
     public State dtoToEntityBasic(StateDto dto) {
         State entity = new State();
 
@@ -80,10 +82,12 @@ public class StateMapper implements BaseMapper<StateDto, State> {
         return entity;
     }
 
+    @Override
     public List<StateDto> entitiesToDtosBasic(List<State> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
+    @Override
     public List<State> DtosToEntitiesBasic(List<StateDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }

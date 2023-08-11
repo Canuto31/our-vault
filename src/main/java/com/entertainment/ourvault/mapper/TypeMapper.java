@@ -60,6 +60,7 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
+    @Override
     public TypeDto entityToDtoBasic(Type entity) {
         TypeDto dto = new TypeDto();
 
@@ -69,6 +70,7 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
         return dto;
     }
 
+    @Override
     public Type dtoToEntityBasic(TypeDto dto) {
         Type entity = new Type();
 
@@ -78,10 +80,12 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
         return entity;
     }
 
+    @Override
     public List<TypeDto> entitiesToDtosBasic(List<Type> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
+    @Override
     public List<Type> DtosToEntitiesBasic(List<TypeDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
