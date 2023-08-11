@@ -15,5 +15,5 @@ public interface GameStoreRepository {
 
     GameStoreDto saveGameStore(GameStoreDto gameStoreDto);
 
-    void deleteGameStore(int idBook);
+    void deleteGameStore(int idGameStore);
 }
