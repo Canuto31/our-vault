@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface OtherService {
 
 //    TYPE
-
     List<TypeDto> getAllTypes();
 
     Optional<TypeDto> findTypeById(int idType);
@@ -62,4 +61,27 @@ public interface OtherService {
     BookDto saveBook(BookDto bookDto);
 
     boolean deleteBookById(int idBook);
+
+    //    GAME STORE
+    List<GameStoreDto> getAllGameStores();
+
+    Optional<GameStoreDto> findGameStoreById(int idGameStore);
+
+    Optional<GameStoreDto> findGameStoreByName(String name);
+
+    GameStoreDto saveGameStore(GameStoreDto gameStoreDto);
+
+    boolean deleteGameStoreById(int idGameStore);
+
+    //    VIDEOGAME
+    List<VideogameDto> getAllVideogames();
+
+    Optional<VideogameDto> findVideogameById(int idVideogame);
+
+    Optional<VideogameDto> findVideogameByName(String name);
+
+    VideogameDto saveVideogame(VideogameDto videogameDto);
+
+    boolean deleteVideogameById(int idVideogame);
+
 }
