@@ -9,7 +9,7 @@ public interface GameStoreRepository {
 
     List<GameStoreDto> getAllGameStores();
 
-    Optional<GameStoreDto> GetGameStroreById(int idGameStore);
+    Optional<GameStoreDto> GetGameStoreById(int idGameStore);
 
     Optional<GameStoreDto> getGameStoreByName(String name);
 

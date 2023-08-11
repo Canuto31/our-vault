@@ -24,7 +24,7 @@ public class GameStoreRepositoryImpl implements GameStoreRepository{
     }
 
     @Override
-    public Optional<GameStoreDto> GetGameStroreById(int idGameStore) {
+    public Optional<GameStoreDto> GetGameStoreById(int idGameStore) {
         return repository.findById(idGameStore).map(gameStore -> mapper.entityToDto(gameStore));
     }
 
