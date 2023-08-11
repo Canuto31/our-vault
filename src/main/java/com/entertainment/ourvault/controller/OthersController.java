@@ -93,7 +93,7 @@ public class OthersController {
 
     @DeleteMapping("/category/{id}")
     private ResponseEntity<String> deleteCategory (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteCategoryById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(service.deleteCategoryById(id) ? "Deleted successfully" : "Not found", service.deleteCategoryById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/author")
@@ -118,7 +118,7 @@ public class OthersController {
 
     @DeleteMapping("/author/{id}")
     private ResponseEntity<String> deleteAuthor (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteAuthorById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(service.deleteAuthorById(id) ? "Deleted successfully" : "Not found", service.deleteAuthorById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/book")
@@ -143,6 +143,56 @@ public class OthersController {
 
     @DeleteMapping("/book/{id}")
     private ResponseEntity<String> deleteBook (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteBookById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(service.deleteBookById(id) ? "Deleted successfully" : "Not found", service.deleteBookById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/game-store")
+    private ResponseEntity<List<GameStoreDto>> getAllGameStores() {
+        return new ResponseEntity<>(service.getAllGameStores(), HttpStatus.OK);
+    }
+
+    @GetMapping("/game-store/id/{id}")
+    private ResponseEntity<GameStoreDto> getGameStoreByid(@PathVariable int id) {
+        return service.findGameStoreById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/game-store/name/{name}")
+    private ResponseEntity<GameStoreDto> getGameStoreByName(@PathVariable String name) {
+        return service.findGameStoreByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/game-store")
+    private ResponseEntity<GameStoreDto> saveGameStore(@RequestBody GameStoreDto gameStoreDto) {
+        return new ResponseEntity<>(service.saveGameStore(gameStoreDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/game-store/{id}")
+    private ResponseEntity<String> deleteGameStore (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteGameStoreById(id) ? "Deleted successfully" : "Not found", service.deleteGameStoreById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+    @GetMapping("/videogame")
+    private ResponseEntity<List<VideogameDto>> getAllVideogames() {
+        return new ResponseEntity<>(service.getAllVideogames(), HttpStatus.OK);
+    }
+
+    @GetMapping("/videogame/id/{id}")
+    private ResponseEntity<VideogameDto> getVideogameByid(@PathVariable int id) {
+        return service.findVideogameById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/videogame/name/{name}")
+    private ResponseEntity<VideogameDto> getVideogameByName(@PathVariable String name) {
+        return service.findVideogameByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/videogame")
+    private ResponseEntity<VideogameDto> saveVideogame(@RequestBody VideogameDto videogameDto) {
+        return new ResponseEntity<>(service.saveVideogame(videogameDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/videogame/{id}")
+    private ResponseEntity<String> deleteVideogame (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteVideogameById(id) ? "Deleted successfully" : "Not found", service.deleteVideogameById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
 }
