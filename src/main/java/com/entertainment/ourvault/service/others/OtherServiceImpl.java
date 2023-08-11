@@ -1,10 +1,8 @@
 package com.entertainment.ourvault.service.others;
 
-import com.entertainment.ourvault.model.dto.AuthorDto;
-import com.entertainment.ourvault.model.dto.StateDto;
-import com.entertainment.ourvault.model.dto.CategoryDto;
-import com.entertainment.ourvault.model.dto.TypeDto;
+import com.entertainment.ourvault.model.dto.*;
 import com.entertainment.ourvault.repository.others.author.AuthorRepository;
+import com.entertainment.ourvault.repository.others.book.BookRepository;
 import com.entertainment.ourvault.repository.others.state.StateRepository;
 import com.entertainment.ourvault.repository.others.category.CategoryRepository;
 import com.entertainment.ourvault.repository.others.type.TypeRepository;
@@ -25,6 +23,8 @@ public class OtherServiceImpl implements OtherService{
     private CategoryRepository categoryRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public List<TypeDto> getAllTypes() {
@@ -134,6 +134,34 @@ public class OtherServiceImpl implements OtherService{
     public boolean deleteAuthorById(int idAuthor) {
         return findAuthorById(idAuthor).map(author -> {
             authorRepository.deleteAuthor(idAuthor);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<BookDto> getAllBooks() {
+        return bookRepository.getAllBooks();
+    }
+
+    @Override
+    public Optional<BookDto> findBookById(int idBook) {
+        return bookRepository.GetBookById(idBook);
+    }
+
+    @Override
+    public Optional<BookDto> findBookByName(String name) {
+        return bookRepository.getBookByName(name);
+    }
+
+    @Override
+    public BookDto saveBook(BookDto bookDto) {
+        return bookRepository.saveBook(bookDto);
+    }
+
+    @Override
+    public boolean deleteBookById(int idBook) {
+        return findBookById(idBook).map(book -> {
+            bookRepository.deleteBook(idBook);
             return true;
         }).orElse(false);
     }
