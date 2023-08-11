@@ -1,9 +1,6 @@
 package com.entertainment.ourvault.service.others;
 
-import com.entertainment.ourvault.model.dto.AuthorDto;
-import com.entertainment.ourvault.model.dto.StateDto;
-import com.entertainment.ourvault.model.dto.CategoryDto;
-import com.entertainment.ourvault.model.dto.TypeDto;
+import com.entertainment.ourvault.model.dto.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,4 +51,15 @@ public interface OtherService {
     AuthorDto saveAuthor(AuthorDto authorDto);
 
     boolean deleteAuthorById(int idAuthor);
+
+    //    BOOK
+    List<BookDto> getAllBooks();
+
+    Optional<BookDto> findBookById(int idBook);
+
+    Optional<BookDto> findBookByName(String name);
+
+    BookDto saveBook(BookDto bookDto);
+
+    boolean deleteBookById(int idBook);
 }
