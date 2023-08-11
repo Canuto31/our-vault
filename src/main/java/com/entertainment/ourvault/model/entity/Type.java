@@ -22,4 +22,11 @@ public class Type {
     })
     @JoinTable(name = "type_state",joinColumns = @JoinColumn(name = "id_type"), inverseJoinColumns = @JoinColumn(name = "id_state"))
     private List<State> states;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "type_category",joinColumns = @JoinColumn(name = "id_type"), inverseJoinColumns = @JoinColumn(name = "id_category"))
+    private List<Category> categories;
 }

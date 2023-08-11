@@ -16,7 +16,11 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
 
     @Lazy
     @Autowired
-    private StateMapper mapper;
+    private StateMapper stateMapper;
+
+    @Lazy
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Lazy
     @Autowired
@@ -28,7 +32,8 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setStates(mapper.entitiesToDtosBasic(entity.getStates()));
+        dto.setStates(stateMapper.entitiesToDtosBasic(entity.getStates()));
+        dto.setCategories(categoryMapper.entitiesToDtos(entity.getCategories()));
 
         return dto;
     }
@@ -39,32 +44,19 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setStates(mapper.DtosToEntitiesBasic(dto.getStates()));
+        entity.setStates(stateMapper.DtosToEntitiesBasic(dto.getStates()));
+        entity.setCategories(categoryMapper.DtosToEntities(dto.getCategories()));
 
         return entity;
     }
 
     @Override
     public List<TypeDto> entitiesToDtos(List<Type> entities) {
-//        List<TypeDto> dtos = new ArrayList<>();
-//
-//        for(Type entity : entities) {
-//            dtos.add(entityToDto(entity));
-//        }
-//
-//        return dtos;
         return mapperUtils.entitiesToDtos(entities, this::entityToDto);
     }
 
     @Override
     public List<Type> DtosToEntities(List<TypeDto> dtos) {
-//        List<Type> entities = new ArrayList<>();
-//
-//        for(TypeDto dto : dtos) {
-//            entities.add(dtoToEntity(dto));
-//        }
-//
-//        return entities;
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
@@ -87,24 +79,10 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
     }
 
     public List<TypeDto> entitiesToDtosBasic(List<Type> entities) {
-//        List<TypeDto> dtos = new ArrayList<>();
-//
-//        for(Type entity : entities) {
-//            dtos.add(entityToDtoBasic(entity));
-//        }
-//
-//        return dtos;
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
     public List<Type> DtosToEntitiesBasic(List<TypeDto> dtos) {
-//        List<Type> entities = new ArrayList<>();
-//
-//        for(TypeDto dto : dtos) {
-//            entities.add(dtoToEntityBasic(dto));
-//        }
-//
-//        return entities;
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -16,7 +15,7 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
     @Lazy
     @Autowired
-    private TypeMapper mapper;
+    private TypeMapper typeMapper;
 
     @Lazy
     @Autowired
@@ -28,7 +27,7 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setTypes(mapper.entitiesToDtosBasic(entity.getTypes()));
+        dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
 
         return dto;
     }
@@ -39,7 +38,7 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setTypes(mapper.DtosToEntitiesBasic(dto.getTypes()));
+        entity.setTypes(typeMapper.DtosToEntitiesBasic(dto.getTypes()));
 
         return entity;
     }
