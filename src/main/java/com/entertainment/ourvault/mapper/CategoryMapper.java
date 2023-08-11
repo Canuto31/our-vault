@@ -48,24 +48,12 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
 
     @Override
     public List<CategoryDto> entitiesToDtos(List<Category> entities) {
-        List<CategoryDto> dtos = new ArrayList<>();
-
-        for(Category entity : entities) {
-            dtos.add(entityToDto(entity));
-        }
-
-        return dtos;
+        return mapperUtils.entitiesToDtos(entities, this::entityToDto);
     }
 
     @Override
     public List<Category> DtosToEntities(List<CategoryDto> dtos) {
-        List<Category> entities = new ArrayList<>();
-
-        for(CategoryDto dto : dtos) {
-            entities.add(dtoToEntity(dto));
-        }
-
-        return entities;
+        return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
     public CategoryDto entityToDtoBasic(Category entity) {
