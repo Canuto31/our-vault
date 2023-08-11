@@ -1,5 +1,6 @@
 package com.entertainment.ourvault.controller;
 
+import com.entertainment.ourvault.model.dto.AuthorDto;
 import com.entertainment.ourvault.model.dto.StateDto;
 import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
@@ -96,5 +97,30 @@ public class OthersController {
     @DeleteMapping("/category/{id}")
     private ResponseEntity<String> deleteCategory (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteCategoryById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/author")
+    private ResponseEntity<List<AuthorDto>> getAllAuthors() {
+        return new ResponseEntity<>(service.getAllAuthors(), HttpStatus.OK);
+    }
+
+    @GetMapping("/author/id/{id}")
+    private ResponseEntity<AuthorDto> getAuthorByid(@PathVariable int id) {
+        return service.findAuthorById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/author/name/{name}")
+    private ResponseEntity<AuthorDto> getAuthorByName(@PathVariable String name) {
+        return service.findAuthorByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/author")
+    private ResponseEntity<AuthorDto> saveAuthor(@RequestBody AuthorDto authorDto) {
+        return new ResponseEntity<>(service.saveAuthor(authorDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/author/{id}")
+    private ResponseEntity<String> deleteAuthor (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteAuthorById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
