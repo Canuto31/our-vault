@@ -5,11 +5,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class StateDto {
+public class GameStoreDto {
 
     private Integer id;
+
     private String name;
-    private List<TypeDto> types;
-    private List<BookDto> books;
+
     private List<VideogameDto> videogames;
 }

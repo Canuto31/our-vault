@@ -14,4 +14,6 @@ public class CategoryDto {
     private List<TypeDto> types;
 
     private List<BookDto> books;
+
+    private List<VideogameDto> videogames;
 }
