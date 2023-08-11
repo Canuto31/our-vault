@@ -22,5 +22,12 @@ public class Book {
 
     private String image;
 
+    @Column(name = "pages_amount")
+    private Integer pagesAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "id_author")
+    private Author author;
+
     private Integer rate;
 }

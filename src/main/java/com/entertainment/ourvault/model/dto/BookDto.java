@@ -15,5 +15,9 @@ public class BookDto {
 
     private String image;
 
+    private Integer pagesAmount;
+
+    private AuthorDto author;
+
     private Integer rate;
 }

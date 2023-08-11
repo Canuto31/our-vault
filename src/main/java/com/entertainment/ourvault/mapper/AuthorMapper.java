@@ -17,12 +17,18 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
     @Autowired
     private MapperUtils mapperUtils;
 
+    @Lazy
+    @Autowired
+    private BookMapper bookMapper;
+
     @Override
     public AuthorDto entityToDto(Author entity) {
         AuthorDto dto = new AuthorDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+
+        dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
 
         return dto;
     }
@@ -33,6 +39,8 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
+
+        entity.setBooks(bookMapper.DtosToEntitiesBasic(dto.getBooks()));
 
         return entity;
     }
@@ -45,5 +53,31 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
     @Override
     public List<Author> DtosToEntities(List<AuthorDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
+    }
+
+    public AuthorDto entityToDtoBasic(Author entity) {
+        AuthorDto dto = new AuthorDto();
+
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+
+        return dto;
+    }
+
+    public Author dtoToEntityBasic(AuthorDto dto) {
+        Author entity = new Author();
+
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+
+        return entity;
+    }
+
+    public List<AuthorDto> entitiesToDtosBasic(List<Author> entities) {
+        return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
+    }
+
+    public List<Author> DtosToEntitiesBasic(List<AuthorDto> dtos) {
+        return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
 }
