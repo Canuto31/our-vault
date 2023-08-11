@@ -1,5 +1,6 @@
 package com.entertainment.ourvault.mapper;
 
+import com.entertainment.ourvault.mapper.utils.BaseMapper;
 import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.entity.Category;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.mapper;
+package com.entertainment.ourvault.mapper.utils;
 
 import java.util.List;
 
