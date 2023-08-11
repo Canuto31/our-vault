@@ -12,4 +12,6 @@ public class CategoryDto {
     private String name;
 
     private List<TypeDto> types;
+
+    private List<BookDto> books;
 }

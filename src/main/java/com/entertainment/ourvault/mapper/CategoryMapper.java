@@ -24,13 +24,19 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
     @Autowired
     private TypeMapper typeMapper;
 
+    @Lazy
+    @Autowired
+    private BookMapper bookMapper;
+
     @Override
     public CategoryDto entityToDto(Category entity) {
         CategoryDto dto = new CategoryDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+
         dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
+        dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
 
         return dto;
     }
@@ -41,7 +47,9 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
+
         entity.setTypes(typeMapper.DtosToEntitiesBasic(dto.getTypes()));
+        entity.setBooks(bookMapper.DtosToEntitiesBasic(dto.getBooks()));
 
         return entity;
     }

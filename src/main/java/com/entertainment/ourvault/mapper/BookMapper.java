@@ -17,6 +17,10 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
     @Autowired
     private MapperUtils mapperUtils;
 
+    @Lazy
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     @Override
     public BookDto entityToDto(Book entity) {
         BookDto dto = new BookDto();
@@ -26,6 +30,8 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
         dto.setPrice(entity.getPrice());
         dto.setImage(entity.getImage());
         dto.setRate(entity.getRate());
+
+        dto.setCategory(categoryMapper.entityToDtoBasic(entity.getCategory()));
 
         return dto;
     }
@@ -40,6 +46,8 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
         entity.setImage(dto.getImage());
         entity.setRate(dto.getRate());
 
+        entity.setCategory(categoryMapper.dtoToEntityBasic(dto.getCategory()));
+
         return entity;
     }
 
@@ -51,5 +59,37 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
     @Override
     public List<Book> DtosToEntities(List<BookDto> dtos) {
         return mapperUtils.dtosToEntities(dtos, this::dtoToEntity);
+    }
+
+    public BookDto entityToDtoBasic(Book entity) {
+        BookDto dto = new BookDto();
+
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        dto.setImage(entity.getImage());
+        dto.setRate(entity.getRate());
+
+        return dto;
+    }
+
+    public Book dtoToEntityBasic(BookDto dto) {
+        Book entity = new Book();
+
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        entity.setImage(dto.getImage());
+        entity.setRate(dto.getRate());
+
+        return entity;
+    }
+
+    public List<BookDto> entitiesToDtosBasic(List<Book> entities) {
+        return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
+    }
+
+    public List<Book> DtosToEntitiesBasic(List<BookDto> dtos) {
+        return mapperUtils.dtosToEntities(dtos, this::dtoToEntityBasic);
     }
 }

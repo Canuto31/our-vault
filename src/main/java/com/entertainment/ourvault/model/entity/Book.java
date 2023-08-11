@@ -14,6 +14,10 @@ public class Book {
 
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
     private Double price;
 
     private String image;

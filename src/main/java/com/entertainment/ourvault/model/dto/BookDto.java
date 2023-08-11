@@ -9,6 +9,8 @@ public class BookDto {
 
     private String name;
 
+    private CategoryDto category;
+
     private Double price;
 
     private String image;

@@ -18,4 +18,7 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private List<Type> types;
+
+    @OneToMany(mappedBy = "category")
+    private List<Book> books;
 }
