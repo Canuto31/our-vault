@@ -23,6 +23,9 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        dto.setImage(entity.getImage());
+        dto.setRate(entity.getRate());
 
         return dto;
     }
@@ -33,6 +36,9 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        entity.setImage(dto.getImage());
+        entity.setRate(dto.getRate());
 
         return entity;
     }

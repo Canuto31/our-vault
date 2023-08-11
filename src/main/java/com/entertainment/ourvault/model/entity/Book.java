@@ -13,4 +13,10 @@ public class Book {
     private Integer id;
 
     private String name;
+
+    private Double price;
+
+    private String image;
+
+    private Integer rate;
 }
