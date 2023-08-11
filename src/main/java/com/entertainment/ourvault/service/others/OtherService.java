@@ -51,7 +51,7 @@ public interface OtherService {
 
     Optional<AuthorDto> findAuthorByName(String name);
 
-    CategoryDto saveAuthor(AuthorDto authorDto);
+    AuthorDto saveAuthor(AuthorDto authorDto);
 
     boolean deleteAuthorById(int idAuthor);
 }

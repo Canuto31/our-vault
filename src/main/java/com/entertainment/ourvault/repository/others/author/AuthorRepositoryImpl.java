@@ -18,7 +18,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     private AuthorMapper mapper;
 
     @Override
-    public List<AuthorDto> getAllAuthor() {
+    public List<AuthorDto> getAllAuthors() {
         List<Author> authors = (List<Author>) repository.findAll();
         return mapper.entitiesToDtos(authors);
     }

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AuthorRepository {
 
-    List<AuthorDto> getAllAuthor();
+    List<AuthorDto> getAllAuthors();
 
     Optional<AuthorDto> GetAuthorById(int idAuthor);
 

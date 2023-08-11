@@ -1,8 +1,10 @@
 package com.entertainment.ourvault.service.others;
 
+import com.entertainment.ourvault.model.dto.AuthorDto;
 import com.entertainment.ourvault.model.dto.StateDto;
 import com.entertainment.ourvault.model.dto.CategoryDto;
 import com.entertainment.ourvault.model.dto.TypeDto;
+import com.entertainment.ourvault.repository.others.author.AuthorRepository;
 import com.entertainment.ourvault.repository.others.state.StateRepository;
 import com.entertainment.ourvault.repository.others.category.CategoryRepository;
 import com.entertainment.ourvault.repository.others.type.TypeRepository;
@@ -21,6 +23,8 @@ public class OtherServiceImpl implements OtherService{
     private StateRepository stateRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @Override
     public List<TypeDto> getAllTypes() {
@@ -102,6 +106,34 @@ public class OtherServiceImpl implements OtherService{
     public boolean deleteCategoryById(int idCategory) {
         return findCategoryById(idCategory).map(type -> {
             categoryRepository.deleteCategory(idCategory);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<AuthorDto> getAllAuthors() {
+        return authorRepository.getAllAuthors();
+    }
+
+    @Override
+    public Optional<AuthorDto> findAuthorById(int idAuthor) {
+        return authorRepository.GetAuthorById(idAuthor);
+    }
+
+    @Override
+    public Optional<AuthorDto> findAuthorByName(String name) {
+        return authorRepository.getAuthorByName(name);
+    }
+
+    @Override
+    public AuthorDto saveAuthor(AuthorDto authorDto) {
+        return authorRepository.saveAuthor(authorDto);
+    }
+
+    @Override
+    public boolean deleteAuthorById(int idAuthor) {
+        return findAuthorById(idAuthor).map(author -> {
+            authorRepository.deleteAuthor(idAuthor);
             return true;
         }).orElse(false);
     }
