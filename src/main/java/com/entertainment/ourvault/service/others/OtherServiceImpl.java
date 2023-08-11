@@ -3,9 +3,11 @@ package com.entertainment.ourvault.service.others;
 import com.entertainment.ourvault.model.dto.*;
 import com.entertainment.ourvault.repository.others.author.AuthorRepository;
 import com.entertainment.ourvault.repository.others.book.BookRepository;
+import com.entertainment.ourvault.repository.others.gameStore.GameStoreRepository;
 import com.entertainment.ourvault.repository.others.state.StateRepository;
 import com.entertainment.ourvault.repository.others.category.CategoryRepository;
 import com.entertainment.ourvault.repository.others.type.TypeRepository;
+import com.entertainment.ourvault.repository.others.videogame.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ public class OtherServiceImpl implements OtherService{
     private AuthorRepository authorRepository;
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private GameStoreRepository gameStoreRepository;
+    @Autowired
+    private VideoGameRepository videoGameRepository;
 
     @Override
     public List<TypeDto> getAllTypes() {
@@ -162,6 +168,62 @@ public class OtherServiceImpl implements OtherService{
     public boolean deleteBookById(int idBook) {
         return findBookById(idBook).map(book -> {
             bookRepository.deleteBook(idBook);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<GameStoreDto> getAllGameStores() {
+        return gameStoreRepository.getAllGameStores();
+    }
+
+    @Override
+    public Optional<GameStoreDto> findGameStoreById(int idGameStore) {
+        return gameStoreRepository.GetGameStoreById(idGameStore);
+    }
+
+    @Override
+    public Optional<GameStoreDto> findGameStoreByName(String name) {
+        return gameStoreRepository.getGameStoreByName(name);
+    }
+
+    @Override
+    public GameStoreDto saveGameStore(GameStoreDto gameStoreDto) {
+        return gameStoreRepository.saveGameStore(gameStoreDto);
+    }
+
+    @Override
+    public boolean deleteGameStoreById(int idGameStore) {
+        return findBookById(idGameStore).map(gameStore -> {
+            gameStoreRepository.deleteGameStore(idGameStore);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<VideogameDto> getAllVideogames() {
+        return videoGameRepository.getAllVideogames();
+    }
+
+    @Override
+    public Optional<VideogameDto> findVideogameById(int idVideogame) {
+        return videoGameRepository.GetVideogameById(idVideogame);
+    }
+
+    @Override
+    public Optional<VideogameDto> findVideogameByName(String name) {
+        return videoGameRepository.getVideogameByName(name);
+    }
+
+    @Override
+    public VideogameDto saveVideogame(VideogameDto videogameDto) {
+        return videoGameRepository.saveVideogame(videogameDto);
+    }
+
+    @Override
+    public boolean deleteVideogameById(int idVideogame) {
+        return findVideogameById(idVideogame).map(videogame -> {
+            videoGameRepository.deleteVideogame(idVideogame);
             return true;
         }).orElse(false);
     }
