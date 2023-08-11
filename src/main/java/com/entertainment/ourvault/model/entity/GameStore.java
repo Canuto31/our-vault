@@ -6,9 +6,9 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name = "state")
+@Table(name = "game_store")
 @Data
-public class State {
+public class GameStore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +16,6 @@ public class State {
 
     private String name;
 
-    @ManyToMany(mappedBy = "states")
-    private List<Type> types;
-
-    @OneToMany(mappedBy = "state")
-    private List<Book> books;
-
-    @OneToMany(mappedBy = "state")
+    @OneToMany(mappedBy = "gameStore")
     private List<Videogame> videogames;
 }
