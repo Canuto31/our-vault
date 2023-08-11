@@ -18,4 +18,7 @@ public class State {
 
     @ManyToMany(mappedBy = "states")
     private List<Type> types;
+
+    @OneToMany(mappedBy = "state")
+    private List<Book> books;
 }

@@ -19,5 +19,7 @@ public class BookDto {
 
     private AuthorDto author;
 
+    private StateDto state;
+
     private Integer rate;
 }

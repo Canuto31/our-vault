@@ -29,5 +29,9 @@ public class Book {
     @JoinColumn(name = "id_author")
     private Author author;
 
+    @ManyToOne
+    @JoinColumn(name = "id_state")
+    private State state;
+
     private Integer rate;
 }

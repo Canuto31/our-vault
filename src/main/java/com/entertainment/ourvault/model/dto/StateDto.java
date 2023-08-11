@@ -10,4 +10,5 @@ public class StateDto {
     private Integer id;
     private String name;
     private List<TypeDto> types;
+    private List<BookDto> books;
 }

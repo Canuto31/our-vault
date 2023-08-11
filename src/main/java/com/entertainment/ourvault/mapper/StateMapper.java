@@ -15,11 +15,15 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
     @Lazy
     @Autowired
+    private MapperUtils mapperUtils;
+
+    @Lazy
+    @Autowired
     private TypeMapper typeMapper;
 
     @Lazy
     @Autowired
-    private MapperUtils mapperUtils;
+    private BookMapper bookMapper;
 
     @Override
     public StateDto entityToDto(State entity) {
@@ -27,7 +31,10 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+
         dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
+        dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
+
 
         return dto;
     }
@@ -38,7 +45,9 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
+
         entity.setTypes(typeMapper.DtosToEntitiesBasic(dto.getTypes()));
+        entity.setBooks(bookMapper.DtosToEntitiesBasic(dto.getBooks()));
 
         return entity;
     }

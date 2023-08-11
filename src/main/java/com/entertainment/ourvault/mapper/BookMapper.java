@@ -25,6 +25,10 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
     @Autowired
     private AuthorMapper authorMapper;
 
+    @Lazy
+    @Autowired
+    private StateMapper stateMapper;
+
     @Override
     public BookDto entityToDto(Book entity) {
         BookDto dto = new BookDto();
@@ -38,6 +42,7 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
 
         dto.setCategory(categoryMapper.entityToDtoBasic(entity.getCategory()));
         dto.setAuthor(authorMapper.entityToDtoBasic(entity.getAuthor()));
+        dto.setState(stateMapper.entityToDtoBasic(entity.getState()));
 
         return dto;
     }
@@ -55,6 +60,7 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
 
         entity.setCategory(categoryMapper.dtoToEntityBasic(dto.getCategory()));
         entity.setAuthor(authorMapper.dtoToEntityBasic(dto.getAuthor()));
+        entity.setState(stateMapper.dtoToEntityBasic(dto.getState()));
 
         return entity;
     }
