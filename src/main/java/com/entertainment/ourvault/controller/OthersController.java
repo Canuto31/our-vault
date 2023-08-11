@@ -1,9 +1,6 @@
 package com.entertainment.ourvault.controller;
 
-import com.entertainment.ourvault.model.dto.AuthorDto;
-import com.entertainment.ourvault.model.dto.StateDto;
-import com.entertainment.ourvault.model.dto.CategoryDto;
-import com.entertainment.ourvault.model.dto.TypeDto;
+import com.entertainment.ourvault.model.dto.*;
 import com.entertainment.ourvault.service.others.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -122,5 +119,30 @@ public class OthersController {
     @DeleteMapping("/author/{id}")
     private ResponseEntity<String> deleteAuthor (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteAuthorById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/book")
+    private ResponseEntity<List<BookDto>> getAllBooks() {
+        return new ResponseEntity<>(service.getAllBooks(), HttpStatus.OK);
+    }
+
+    @GetMapping("/book/id/{id}")
+    private ResponseEntity<BookDto> getBookByid(@PathVariable int id) {
+        return service.findBookById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/book/name/{name}")
+    private ResponseEntity<BookDto> getBookByName(@PathVariable String name) {
+        return service.findBookByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/book")
+    private ResponseEntity<BookDto> saveBook(@RequestBody BookDto bookDto) {
+        return new ResponseEntity<>(service.saveBook(bookDto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/book/{id}")
+    private ResponseEntity<String> deleteBook (@PathVariable int id) {
+        return new ResponseEntity<>(service.deleteBookById(id) ? "Deleted successfully" : "Not found", service.deleteTypeById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
