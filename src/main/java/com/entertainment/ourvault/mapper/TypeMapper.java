@@ -44,8 +44,8 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setStates(stateMapper.DtosToEntitiesBasic(dto.getStates()));
-        entity.setCategories(categoryMapper.DtosToEntities(dto.getCategories()));
+        entity.setStates(stateMapper.dtosToEntitiesBasic(dto.getStates()));
+        entity.setCategories(categoryMapper.dtosToEntities(dto.getCategories()));
 
         return entity;
     }
@@ -56,7 +56,7 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
     }
 
     @Override
-    public List<Type> DtosToEntities(List<TypeDto> dtos) {
+    public List<Type> dtosToEntities(List<TypeDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
@@ -86,7 +86,7 @@ public class TypeMapper implements BaseMapper<TypeDto, Type> {
     }
 
     @Override
-    public List<Type> DtosToEntitiesBasic(List<TypeDto> dtos) {
+    public List<Type> dtosToEntitiesBasic(List<TypeDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
 }

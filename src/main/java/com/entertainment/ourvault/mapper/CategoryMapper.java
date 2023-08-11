@@ -3,14 +3,11 @@ package com.entertainment.ourvault.mapper;
 import com.entertainment.ourvault.mapper.utils.BaseMapper;
 import com.entertainment.ourvault.mapper.utils.MapperUtils;
 import com.entertainment.ourvault.model.dto.CategoryDto;
-import com.entertainment.ourvault.model.dto.StateDto;
 import com.entertainment.ourvault.model.entity.Category;
-import com.entertainment.ourvault.model.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -28,6 +25,10 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
     @Autowired
     private BookMapper bookMapper;
 
+    @Lazy
+    @Autowired
+    private VideogameMapper videogameMapper;
+
     @Override
     public CategoryDto entityToDto(Category entity) {
         CategoryDto dto = new CategoryDto();
@@ -37,6 +38,7 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
 
         dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
         dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
+        dto.setVideogames(videogameMapper.entitiesToDtosBasic(entity.getVideogames()));
 
         return dto;
     }
@@ -48,8 +50,9 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
         entity.setId(dto.getId());
         entity.setName(dto.getName());
 
-        entity.setTypes(typeMapper.DtosToEntitiesBasic(dto.getTypes()));
-        entity.setBooks(bookMapper.DtosToEntitiesBasic(dto.getBooks()));
+        entity.setTypes(typeMapper.dtosToEntitiesBasic(dto.getTypes()));
+        entity.setBooks(bookMapper.dtosToEntitiesBasic(dto.getBooks()));
+        entity.setVideogames(videogameMapper.dtosToEntitiesBasic(dto.getVideogames()));
 
         return entity;
     }
@@ -60,7 +63,7 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
     }
 
     @Override
-    public List<Category> DtosToEntities(List<CategoryDto> dtos) {
+    public List<Category> dtosToEntities(List<CategoryDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
@@ -90,7 +93,7 @@ public class CategoryMapper implements BaseMapper<CategoryDto, Category> {
     }
 
     @Override
-    public List<Category> DtosToEntitiesBasic(List<CategoryDto> dtos) {
+    public List<Category> dtosToEntitiesBasic(List<CategoryDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
 }

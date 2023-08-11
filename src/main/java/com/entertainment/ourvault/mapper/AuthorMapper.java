@@ -40,7 +40,7 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
         entity.setId(dto.getId());
         entity.setName(dto.getName());
 
-        entity.setBooks(bookMapper.DtosToEntitiesBasic(dto.getBooks()));
+        entity.setBooks(bookMapper.dtosToEntitiesBasic(dto.getBooks()));
 
         return entity;
     }
@@ -51,7 +51,7 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
     }
 
     @Override
-    public List<Author> DtosToEntities(List<AuthorDto> dtos) {
+    public List<Author> dtosToEntities(List<AuthorDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
     }
 
@@ -81,7 +81,7 @@ public class AuthorMapper implements BaseMapper<AuthorDto, Author> {
     }
 
     @Override
-    public List<Author> DtosToEntitiesBasic(List<AuthorDto> dtos) {
+    public List<Author> dtosToEntitiesBasic(List<AuthorDto> dtos) {
         return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
     }
 }

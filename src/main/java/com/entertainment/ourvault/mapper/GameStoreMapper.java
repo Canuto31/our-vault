@@ -2,8 +2,8 @@ package com.entertainment.ourvault.mapper;
 
 import com.entertainment.ourvault.mapper.utils.BaseMapper;
 import com.entertainment.ourvault.mapper.utils.MapperUtils;
-import com.entertainment.ourvault.model.dto.StateDto;
-import com.entertainment.ourvault.model.entity.State;
+import com.entertainment.ourvault.model.dto.GameStoreDto;
+import com.entertainment.ourvault.model.entity.GameStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class StateMapper implements BaseMapper<StateDto, State> {
+public class GameStoreMapper implements BaseMapper<GameStoreDto, GameStore> {
 
     @Lazy
     @Autowired
@@ -19,58 +19,45 @@ public class StateMapper implements BaseMapper<StateDto, State> {
 
     @Lazy
     @Autowired
-    private TypeMapper typeMapper;
-
-    @Lazy
-    @Autowired
-    private BookMapper bookMapper;
-
-    @Lazy
-    @Autowired
     private VideogameMapper videogameMapper;
 
     @Override
-    public StateDto entityToDto(State entity) {
-        StateDto dto = new StateDto();
+    public GameStoreDto entityToDto(GameStore entity) {
+        GameStoreDto dto = new GameStoreDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
 
-        dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
-        dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
         dto.setVideogames(videogameMapper.entitiesToDtosBasic(entity.getVideogames()));
-
 
         return dto;
     }
 
     @Override
-    public State dtoToEntity(StateDto dto) {
-        State entity = new State();
+    public GameStore dtoToEntity(GameStoreDto dto) {
+        GameStore entity = new GameStore();
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
 
-        entity.setTypes(typeMapper.dtosToEntitiesBasic(dto.getTypes()));
-        entity.setBooks(bookMapper.dtosToEntitiesBasic(dto.getBooks()));
         entity.setVideogames(videogameMapper.dtosToEntitiesBasic(dto.getVideogames()));
 
         return entity;
     }
 
     @Override
-    public List<StateDto> entitiesToDtos(List<State> entities) {
+    public List<GameStoreDto> entitiesToDtos(List<GameStore> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDto);
     }
 
     @Override
-    public List<State> dtosToEntities(List<StateDto> dtos) {
-        return mapperUtils.entitiesToDtos(dtos, this::dtoToEntity);
+    public List<GameStore> dtosToEntities(List<GameStoreDto> dtos) {
+        return mapperUtils.dtosToEntities(dtos, this::dtoToEntity);
     }
 
     @Override
-    public StateDto entityToDtoBasic(State entity) {
-        StateDto dto = new StateDto();
+    public GameStoreDto entityToDtoBasic(GameStore entity) {
+        GameStoreDto dto = new GameStoreDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
@@ -79,8 +66,8 @@ public class StateMapper implements BaseMapper<StateDto, State> {
     }
 
     @Override
-    public State dtoToEntityBasic(StateDto dto) {
-        State entity = new State();
+    public GameStore dtoToEntityBasic(GameStoreDto dto) {
+        GameStore entity = new GameStore();
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
@@ -89,12 +76,12 @@ public class StateMapper implements BaseMapper<StateDto, State> {
     }
 
     @Override
-    public List<StateDto> entitiesToDtosBasic(List<State> entities) {
+    public List<GameStoreDto> entitiesToDtosBasic(List<GameStore> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
     @Override
-    public List<State> dtosToEntitiesBasic(List<StateDto> dtos) {
-        return mapperUtils.entitiesToDtos(dtos, this::dtoToEntityBasic);
+    public List<GameStore> dtosToEntitiesBasic(List<GameStoreDto> dtos) {
+        return mapperUtils.dtosToEntities(dtos, this::dtoToEntityBasic);
     }
 }

@@ -2,8 +2,8 @@ package com.entertainment.ourvault.mapper;
 
 import com.entertainment.ourvault.mapper.utils.BaseMapper;
 import com.entertainment.ourvault.mapper.utils.MapperUtils;
-import com.entertainment.ourvault.model.dto.BookDto;
-import com.entertainment.ourvault.model.entity.Book;
+import com.entertainment.ourvault.model.dto.VideogameDto;
+import com.entertainment.ourvault.model.entity.Videogame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class BookMapper implements BaseMapper<BookDto, Book> {
-
+public class VideogameMapper implements BaseMapper<VideogameDto, Videogame> {
+    
     @Lazy
     @Autowired
     private MapperUtils mapperUtils;
@@ -23,93 +23,93 @@ public class BookMapper implements BaseMapper<BookDto, Book> {
 
     @Lazy
     @Autowired
-    private AuthorMapper authorMapper;
+    private GameStoreMapper gameStoreMapper;
 
     @Lazy
     @Autowired
     private StateMapper stateMapper;
-
+    
     @Override
-    public BookDto entityToDto(Book entity) {
-        BookDto dto = new BookDto();
+    public VideogameDto entityToDto(Videogame entity) {
+        VideogameDto dto = new VideogameDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setPrice(entity.getPrice());
         dto.setImage(entity.getImage());
-        dto.setPagesAmount(entity.getPagesAmount());
+        dto.setTrailer(entity.getTrailer());
         dto.setRate(entity.getRate());
 
         dto.setCategory(categoryMapper.entityToDtoBasic(entity.getCategory()));
-        dto.setAuthor(authorMapper.entityToDtoBasic(entity.getAuthor()));
+        dto.setGameStore(gameStoreMapper.entityToDtoBasic(entity.getGameStore()));
         dto.setState(stateMapper.entityToDtoBasic(entity.getState()));
 
         return dto;
     }
 
     @Override
-    public Book dtoToEntity(BookDto dto) {
-        Book entity = new Book();
+    public Videogame dtoToEntity(VideogameDto dto) {
+        Videogame entity = new Videogame();
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
         entity.setImage(dto.getImage());
-        entity.setPagesAmount(dto.getPagesAmount());
+        entity.setTrailer(dto.getTrailer());
         entity.setRate(dto.getRate());
 
         entity.setCategory(categoryMapper.dtoToEntityBasic(dto.getCategory()));
-        entity.setAuthor(authorMapper.dtoToEntityBasic(dto.getAuthor()));
+        entity.setGameStore(gameStoreMapper.dtoToEntityBasic(dto.getGameStore()));
         entity.setState(stateMapper.dtoToEntityBasic(dto.getState()));
 
         return entity;
     }
 
     @Override
-    public List<BookDto> entitiesToDtos(List<Book> entities) {
+    public List<VideogameDto> entitiesToDtos(List<Videogame> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDto);
     }
 
     @Override
-    public List<Book> dtosToEntities(List<BookDto> dtos) {
+    public List<Videogame> dtosToEntities(List<VideogameDto> dtos) {
         return mapperUtils.dtosToEntities(dtos, this::dtoToEntity);
     }
 
     @Override
-    public BookDto entityToDtoBasic(Book entity) {
-        BookDto dto = new BookDto();
+    public VideogameDto entityToDtoBasic(Videogame entity) {
+        VideogameDto dto = new VideogameDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setPrice(entity.getPrice());
         dto.setImage(entity.getImage());
-        dto.setPagesAmount(entity.getPagesAmount());
+        dto.setTrailer(entity.getTrailer());
         dto.setRate(entity.getRate());
 
         return dto;
     }
 
     @Override
-    public Book dtoToEntityBasic(BookDto dto) {
-        Book entity = new Book();
+    public Videogame dtoToEntityBasic(VideogameDto dto) {
+        Videogame entity = new Videogame();
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
         entity.setImage(dto.getImage());
-        entity.setPagesAmount(dto.getPagesAmount());
+        entity.setTrailer(dto.getTrailer());
         entity.setRate(dto.getRate());
 
         return entity;
     }
 
     @Override
-    public List<BookDto> entitiesToDtosBasic(List<Book> entities) {
+    public List<VideogameDto> entitiesToDtosBasic(List<Videogame> entities) {
         return mapperUtils.entitiesToDtos(entities, this::entityToDtoBasic);
     }
 
     @Override
-    public List<Book> dtosToEntitiesBasic(List<BookDto> dtos) {
+    public List<Videogame> dtosToEntitiesBasic(List<VideogameDto> dtos) {
         return mapperUtils.dtosToEntities(dtos, this::dtoToEntityBasic);
     }
 }

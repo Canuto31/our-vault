@@ -10,7 +10,7 @@ public interface BaseMapper<D, E> {
 
     public List<D> entitiesToDtos(List<E> entities);
 
-    public List<E> DtosToEntities(List<D> dtos);
+    public List<E> dtosToEntities(List<D> dtos);
 
     public D entityToDtoBasic(E entity);
 
@@ -18,5 +18,5 @@ public interface BaseMapper<D, E> {
 
     public List<D> entitiesToDtosBasic(List<E> entities);
 
-    public List<E> DtosToEntitiesBasic(List<D> dtos);
+    public List<E> dtosToEntitiesBasic(List<D> dtos);
 }
