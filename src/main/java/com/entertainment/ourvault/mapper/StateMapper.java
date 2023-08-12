@@ -29,6 +29,14 @@ public class StateMapper implements BaseMapper<StateDto, State> {
     @Autowired
     private VideogameMapper videogameMapper;
 
+    @Lazy
+    @Autowired
+    private MovieMapper movieMapper;
+
+    @Lazy
+    @Autowired
+    private SerieMapper serieMapper;
+
     @Override
     public StateDto entityToDto(State entity) {
         StateDto dto = new StateDto();
@@ -39,6 +47,8 @@ public class StateMapper implements BaseMapper<StateDto, State> {
         dto.setTypes(typeMapper.entitiesToDtosBasic(entity.getTypes()));
         dto.setBooks(bookMapper.entitiesToDtosBasic(entity.getBooks()));
         dto.setVideogames(videogameMapper.entitiesToDtosBasic(entity.getVideogames()));
+        dto.setMovies(movieMapper.entitiesToDtosBasic(entity.getMovies()));
+        dto.setSeries(serieMapper.entitiesToDtosBasic(entity.getSeries()));
 
 
         return dto;
@@ -54,6 +64,8 @@ public class StateMapper implements BaseMapper<StateDto, State> {
         entity.setTypes(typeMapper.dtosToEntitiesBasic(dto.getTypes()));
         entity.setBooks(bookMapper.dtosToEntitiesBasic(dto.getBooks()));
         entity.setVideogames(videogameMapper.dtosToEntitiesBasic(dto.getVideogames()));
+        entity.setMovies(movieMapper.dtosToEntitiesBasic(dto.getMovies()));
+        entity.setSeries(serieMapper.dtosToEntitiesBasic(dto.getSeries()));
 
         return entity;
     }

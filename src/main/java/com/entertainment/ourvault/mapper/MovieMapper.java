@@ -17,6 +17,18 @@ public class MovieMapper implements BaseMapper<MovieDto, Movie> {
     @Autowired
     private MapperUtils mapperUtils;
 
+    @Lazy
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    @Lazy
+    @Autowired
+    private StateMapper stateMapper;
+
+    @Lazy
+    @Autowired
+    private StreamPageMapper streamPageMapper;
+
     @Override
     public MovieDto entityToDto(Movie entity) {
         MovieDto dto = new MovieDto();
@@ -27,6 +39,10 @@ public class MovieMapper implements BaseMapper<MovieDto, Movie> {
         dto.setImage(entity.getImage());
         dto.setTrailer(entity.getTrailer());
         dto.setRate(entity.getRate());
+
+        dto.setCategory(categoryMapper.entityToDtoBasic(entity.getCategory()));
+        dto.setState(stateMapper.entityToDtoBasic(entity.getState()));
+        dto.setStreamPage(streamPageMapper.entityToDtoBasic(entity.getStreamPage()));
 
         return dto;
     }
@@ -41,6 +57,10 @@ public class MovieMapper implements BaseMapper<MovieDto, Movie> {
         entity.setImage(dto.getImage());
         entity.setTrailer(dto.getTrailer());
         entity.setRate(dto.getRate());
+
+        entity.setCategory(categoryMapper.dtoToEntityBasic(dto.getCategory()));
+        entity.setState(stateMapper.dtoToEntityBasic(dto.getState()));
+        entity.setStreamPage(streamPageMapper.dtoToEntityBasic(dto.getStreamPage()));
 
         return entity;
     }

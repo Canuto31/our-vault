@@ -17,6 +17,18 @@ public class SerieMapper implements BaseMapper<SerieDto, Serie> {
     @Autowired
     private MapperUtils mapperUtils;
 
+    @Lazy
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    @Lazy
+    @Autowired
+    private StateMapper stateMapper;
+
+    @Lazy
+    @Autowired
+    private StreamPageMapper streamPageMapper;
+
     @Override
     public SerieDto entityToDto(Serie entity) {
         SerieDto dto = new SerieDto();
@@ -31,6 +43,10 @@ public class SerieMapper implements BaseMapper<SerieDto, Serie> {
         dto.setCurrentlySeason(entity.getCurrentlySeason());
         dto.setCurrentlyChapter(entity.getCurrentlyChapter());
         dto.setRate(entity.getRate());
+
+        dto.setCategory(categoryMapper.entityToDtoBasic(entity.getCategory()));
+        dto.setState(stateMapper.entityToDtoBasic(entity.getState()));
+        dto.setStreamPage(streamPageMapper.entityToDtoBasic(entity.getStreamPage()));
 
         return dto;
     }
@@ -49,6 +65,10 @@ public class SerieMapper implements BaseMapper<SerieDto, Serie> {
         entity.setCurrentlySeason(dto.getCurrentlySeason());
         entity.setCurrentlyChapter(dto.getCurrentlyChapter());
         entity.setRate(dto.getRate());
+
+        entity.setCategory(categoryMapper.dtoToEntityBasic(dto.getCategory()));
+        entity.setState(stateMapper.dtoToEntityBasic(dto.getState()));
+        entity.setStreamPage(streamPageMapper.dtoToEntityBasic(dto.getStreamPage()));
 
         return entity;
     }

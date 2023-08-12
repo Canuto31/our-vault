@@ -17,12 +17,23 @@ public class StreamPageMapper implements BaseMapper<StreamPageDto, StreamPage> {
     @Autowired
     private MapperUtils mapperUtils;
 
+    @Lazy
+    @Autowired
+    private MovieMapper movieMapper;
+
+    @Lazy
+    @Autowired
+    private SerieMapper serieMapper;
+
     @Override
     public StreamPageDto entityToDto(StreamPage entity) {
         StreamPageDto dto = new StreamPageDto();
 
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+
+        dto.setMovies(movieMapper.entitiesToDtosBasic(entity.getMovies()));
+        dto.setSeries(serieMapper.entitiesToDtosBasic(entity.getSeries()));
 
         return dto;
     }
@@ -33,6 +44,9 @@ public class StreamPageMapper implements BaseMapper<StreamPageDto, StreamPage> {
 
         entity.setId(dto.getId());
         entity.setName(dto.getName());
+
+        entity.setMovies(movieMapper.dtosToEntitiesBasic(dto.getMovies()));
+        entity.setSeries(serieMapper.dtosToEntitiesBasic(dto.getSeries()));
 
         return entity;
     }
