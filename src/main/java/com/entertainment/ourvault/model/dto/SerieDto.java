@@ -9,6 +9,8 @@ public class SerieDto {
 
     private String name;
 
+    private Integer seasons;
+
     private Integer chapterForSeason;
 
     private Integer durationForChapter;
