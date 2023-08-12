@@ -24,4 +24,10 @@ public class State {
 
     @OneToMany(mappedBy = "state")
     private List<Videogame> videogames;
+
+    @OneToMany(mappedBy = "state")
+    private List<Movie> movies;
+
+    @OneToMany(mappedBy = "state")
+    private List<Serie> series;
 }

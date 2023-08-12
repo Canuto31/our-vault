@@ -24,4 +24,10 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Videogame> videogames;
+
+    @OneToMany(mappedBy = "category")
+    private List<Movie> movies;
+
+    @OneToMany(mappedBy = "category")
+    private List<Serie> series;
 }
