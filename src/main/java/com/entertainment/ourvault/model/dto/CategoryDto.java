@@ -16,4 +16,8 @@ public class CategoryDto {
     private List<BookDto> books;
 
     private List<VideogameDto> videogames;
+
+    private List<MovieDto> movies;
+
+    private List<SerieDto> series;
 }
