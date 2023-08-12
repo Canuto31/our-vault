@@ -84,4 +84,37 @@ public interface OtherService {
 
     boolean deleteVideogameById(int idVideogame);
 
+    //    STREAM PAGE
+    List<StreamPageDto> getAllStreamPages();
+
+    Optional<StreamPageDto> findStreamPageById(int idStreamPage);
+
+    Optional<StreamPageDto> findStreamPageByName(String name);
+
+    StreamPageDto saveStreamPage(StreamPageDto streamPageDto);
+
+    boolean deleteStreamPageById(int idStreamPage);
+
+    //    MOVIE
+    List<MovieDto> getAllMovies();
+
+    Optional<MovieDto> findMovieById(int idMovie);
+
+    Optional<MovieDto> findMovieByName(String name);
+
+    MovieDto saveMovie(MovieDto movieDto);
+
+    boolean deleteMovieById(int idMovie);
+
+    //    SERIE
+    List<SerieDto> getAllSeries();
+
+    Optional<SerieDto> findSerieById(int idSerie);
+
+    Optional<SerieDto> findSerieByName(String name);
+
+    SerieDto saveSerie(SerieDto serieDto);
+
+    boolean deleteSerieById(int idSerie);
+
 }

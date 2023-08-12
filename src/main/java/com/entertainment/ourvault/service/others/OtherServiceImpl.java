@@ -4,8 +4,11 @@ import com.entertainment.ourvault.model.dto.*;
 import com.entertainment.ourvault.repository.others.author.AuthorRepository;
 import com.entertainment.ourvault.repository.others.book.BookRepository;
 import com.entertainment.ourvault.repository.others.gameStore.GameStoreRepository;
+import com.entertainment.ourvault.repository.others.movie.MovieRepository;
+import com.entertainment.ourvault.repository.others.serie.SerieRepository;
 import com.entertainment.ourvault.repository.others.state.StateRepository;
 import com.entertainment.ourvault.repository.others.category.CategoryRepository;
+import com.entertainment.ourvault.repository.others.streamPage.StreamPageRepository;
 import com.entertainment.ourvault.repository.others.type.TypeRepository;
 import com.entertainment.ourvault.repository.others.videogame.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,12 @@ public class OtherServiceImpl implements OtherService{
     private GameStoreRepository gameStoreRepository;
     @Autowired
     private VideoGameRepository videoGameRepository;
+    @Autowired
+    private StreamPageRepository streamPageRepository;
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired
+    private SerieRepository serieRepository;
 
     @Override
     public List<TypeDto> getAllTypes() {
@@ -224,6 +233,90 @@ public class OtherServiceImpl implements OtherService{
     public boolean deleteVideogameById(int idVideogame) {
         return findVideogameById(idVideogame).map(videogame -> {
             videoGameRepository.deleteVideogame(idVideogame);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<StreamPageDto> getAllStreamPages() {
+        return streamPageRepository.getAllStreamPages();
+    }
+
+    @Override
+    public Optional<StreamPageDto> findStreamPageById(int idStreamPage) {
+        return streamPageRepository.GetStreamPageById(idStreamPage);
+    }
+
+    @Override
+    public Optional<StreamPageDto> findStreamPageByName(String name) {
+        return streamPageRepository.getStreamPageByName(name);
+    }
+
+    @Override
+    public StreamPageDto saveStreamPage(StreamPageDto streamPageDto) {
+        return streamPageRepository.saveStreamPage(streamPageDto);
+    }
+
+    @Override
+    public boolean deleteStreamPageById(int idStreamPage) {
+        return findStreamPageById(idStreamPage).map(streamPage -> {
+            streamPageRepository.deleteStreamPage(idStreamPage);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<MovieDto> getAllMovies() {
+        return movieRepository.getAllMovies();
+    }
+
+    @Override
+    public Optional<MovieDto> findMovieById(int idMovie) {
+        return movieRepository.GetMovieById(idMovie);
+    }
+
+    @Override
+    public Optional<MovieDto> findMovieByName(String name) {
+        return movieRepository.getMovieByName(name);
+    }
+
+    @Override
+    public MovieDto saveMovie(MovieDto movieDto) {
+        return movieRepository.saveMovie(movieDto);
+    }
+
+    @Override
+    public boolean deleteMovieById(int idMovie) {
+        return findMovieById(idMovie).map(movie -> {
+            movieRepository.deleteMovie(idMovie);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public List<SerieDto> getAllSeries() {
+        return serieRepository.getAllSeries();
+    }
+
+    @Override
+    public Optional<SerieDto> findSerieById(int idSerie) {
+        return serieRepository.GetSerieById(idSerie);
+    }
+
+    @Override
+    public Optional<SerieDto> findSerieByName(String name) {
+        return serieRepository.getSerieByName(name);
+    }
+
+    @Override
+    public SerieDto saveSerie(SerieDto serieDto) {
+        return serieRepository.saveSerie(serieDto);
+    }
+
+    @Override
+    public boolean deleteSerieById(int idSerie) {
+        return findSerieById(idSerie).map(serie -> {
+            serieRepository.deleteSerie(idSerie);
             return true;
         }).orElse(false);
     }
