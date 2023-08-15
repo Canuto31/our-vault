@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.repository.others.movie;
+package com.entertainment.ourvault.repository.movie;
 
 import com.entertainment.ourvault.model.dto.MovieDto;
 

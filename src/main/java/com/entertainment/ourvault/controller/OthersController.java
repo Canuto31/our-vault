@@ -121,31 +121,6 @@ public class OthersController {
         return new ResponseEntity<>(service.deleteAuthorById(id) ? "Deleted successfully" : "Not found", service.deleteAuthorById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/book")
-    private ResponseEntity<List<BookDto>> getAllBooks() {
-        return new ResponseEntity<>(service.getAllBooks(), HttpStatus.OK);
-    }
-
-    @GetMapping("/book/id/{id}")
-    private ResponseEntity<BookDto> getBookByid(@PathVariable int id) {
-        return service.findBookById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping("/book/name/{name}")
-    private ResponseEntity<BookDto> getBookByName(@PathVariable String name) {
-        return service.findBookByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @PostMapping("/book")
-    private ResponseEntity<BookDto> saveBook(@RequestBody BookDto bookDto) {
-        return new ResponseEntity<>(service.saveBook(bookDto), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/book/{id}")
-    private ResponseEntity<String> deleteBook (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteBookById(id) ? "Deleted successfully" : "Not found", service.deleteBookById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-
     @GetMapping("/game-store")
     private ResponseEntity<List<GameStoreDto>> getAllGameStores() {
         return new ResponseEntity<>(service.getAllGameStores(), HttpStatus.OK);
@@ -169,30 +144,6 @@ public class OthersController {
     @DeleteMapping("/game-store/{id}")
     private ResponseEntity<String> deleteGameStore (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteGameStoreById(id) ? "Deleted successfully" : "Not found", service.deleteGameStoreById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-    @GetMapping("/videogame")
-    private ResponseEntity<List<VideogameDto>> getAllVideogames() {
-        return new ResponseEntity<>(service.getAllVideogames(), HttpStatus.OK);
-    }
-
-    @GetMapping("/videogame/id/{id}")
-    private ResponseEntity<VideogameDto> getVideogameByid(@PathVariable int id) {
-        return service.findVideogameById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping("/videogame/name/{name}")
-    private ResponseEntity<VideogameDto> getVideogameByName(@PathVariable String name) {
-        return service.findVideogameByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @PostMapping("/videogame")
-    private ResponseEntity<VideogameDto> saveVideogame(@RequestBody VideogameDto videogameDto) {
-        return new ResponseEntity<>(service.saveVideogame(videogameDto), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/videogame/{id}")
-    private ResponseEntity<String> deleteVideogame (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteVideogameById(id) ? "Deleted successfully" : "Not found", service.deleteVideogameById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/stream-page")
@@ -219,55 +170,4 @@ public class OthersController {
     private ResponseEntity<String> deleteStreamPage (@PathVariable int id) {
         return new ResponseEntity<>(service.deleteStreamPageById(id) ? "Deleted successfully" : "Not found", service.deleteStreamPageById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
-
-    @GetMapping("/movie")
-    private ResponseEntity<List<MovieDto>> getAllMovies() {
-        return new ResponseEntity<>(service.getAllMovies(), HttpStatus.OK);
-    }
-
-    @GetMapping("/movie/id/{id}")
-    private ResponseEntity<MovieDto> getMovieByid(@PathVariable int id) {
-        return service.findMovieById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping("/movie/name/{name}")
-    private ResponseEntity<MovieDto> getMovieByName(@PathVariable String name) {
-        return service.findMovieByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @PostMapping("/movie")
-    private ResponseEntity<MovieDto> saveMovie(@RequestBody MovieDto movieDto) {
-        return new ResponseEntity<>(service.saveMovie(movieDto), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/movie/{id}")
-    private ResponseEntity<String> deleteMovie (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteMovieById(id) ? "Deleted successfully" : "Not found", service.deleteMovieById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/serie")
-    private ResponseEntity<List<SerieDto>> getAllSeries() {
-        return new ResponseEntity<>(service.getAllSeries(), HttpStatus.OK);
-    }
-
-    @GetMapping("/serie/id/{id}")
-    private ResponseEntity<SerieDto> getSerieByid(@PathVariable int id) {
-        return service.findSerieById(id).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping("/serie/name/{name}")
-    private ResponseEntity<SerieDto> getSerieByName(@PathVariable String name) {
-        return service.findSerieByName(name).map(type -> new ResponseEntity<>(type, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @PostMapping("/serie")
-    private ResponseEntity<SerieDto> saveSerie(@RequestBody SerieDto serieDto) {
-        return new ResponseEntity<>(service.saveSerie(serieDto), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/serie/{id}")
-    private ResponseEntity<String> deleteSerie (@PathVariable int id) {
-        return new ResponseEntity<>(service.deleteSerieById(id) ? "Deleted successfully" : "Not found", service.deleteSerieById(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-
 }

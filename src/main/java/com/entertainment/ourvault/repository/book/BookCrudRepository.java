@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.repository.others.book;
+package com.entertainment.ourvault.repository.book;
 
 import com.entertainment.ourvault.model.entity.Book;
 import com.entertainment.ourvault.model.entity.Category;

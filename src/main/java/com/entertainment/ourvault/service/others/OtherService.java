@@ -51,17 +51,6 @@ public interface OtherService {
 
     boolean deleteAuthorById(int idAuthor);
 
-    //    BOOK
-    List<BookDto> getAllBooks();
-
-    Optional<BookDto> findBookById(int idBook);
-
-    Optional<BookDto> findBookByName(String name);
-
-    BookDto saveBook(BookDto bookDto);
-
-    boolean deleteBookById(int idBook);
-
     //    GAME STORE
     List<GameStoreDto> getAllGameStores();
 
@@ -73,17 +62,6 @@ public interface OtherService {
 
     boolean deleteGameStoreById(int idGameStore);
 
-    //    VIDEOGAME
-    List<VideogameDto> getAllVideogames();
-
-    Optional<VideogameDto> findVideogameById(int idVideogame);
-
-    Optional<VideogameDto> findVideogameByName(String name);
-
-    VideogameDto saveVideogame(VideogameDto videogameDto);
-
-    boolean deleteVideogameById(int idVideogame);
-
     //    STREAM PAGE
     List<StreamPageDto> getAllStreamPages();
 
@@ -94,27 +72,5 @@ public interface OtherService {
     StreamPageDto saveStreamPage(StreamPageDto streamPageDto);
 
     boolean deleteStreamPageById(int idStreamPage);
-
-    //    MOVIE
-    List<MovieDto> getAllMovies();
-
-    Optional<MovieDto> findMovieById(int idMovie);
-
-    Optional<MovieDto> findMovieByName(String name);
-
-    MovieDto saveMovie(MovieDto movieDto);
-
-    boolean deleteMovieById(int idMovie);
-
-    //    SERIE
-    List<SerieDto> getAllSeries();
-
-    Optional<SerieDto> findSerieById(int idSerie);
-
-    Optional<SerieDto> findSerieByName(String name);
-
-    SerieDto saveSerie(SerieDto serieDto);
-
-    boolean deleteSerieById(int idSerie);
 
 }

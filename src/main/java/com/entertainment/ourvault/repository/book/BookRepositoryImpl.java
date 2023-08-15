@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.repository.others.book;
+package com.entertainment.ourvault.repository.book;
 
 import com.entertainment.ourvault.mapper.BookMapper;
 import com.entertainment.ourvault.model.dto.BookDto;

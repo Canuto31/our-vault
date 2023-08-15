@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.repository.others.serie;
+package com.entertainment.ourvault.repository.serie;
 
 import com.entertainment.ourvault.model.dto.SerieDto;
 

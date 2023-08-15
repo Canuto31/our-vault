@@ -1,4 +1,4 @@
-package com.entertainment.ourvault.repository.others.videogame;
+package com.entertainment.ourvault.repository.videogame;
 
 import com.entertainment.ourvault.mapper.VideogameMapper;
 import com.entertainment.ourvault.model.dto.VideogameDto;
